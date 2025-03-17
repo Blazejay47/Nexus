@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus - Short Video Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .dark-mode {
+            background: #111;
+            color: #ddd;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #222;
+        }
+        .dark-mode-toggle {
+            background: white;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .video-container {
+            width: 300px;
+            margin: 20px auto;
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            border: none;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .comments {
+            margin-top: 20px;
+            width: 90%;
+            max-width: 300px;
+            background: #333;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .comments div {
+            margin-bottom: 5px;
+            padding: 5px;
+            background: #444;
+            border-radius: 5px;
+        }
+        .suggestions {
+            margin-top: 20px;
+            width: 90%;
+            max-width: 300px;
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .suggestions a {
+            display: block;
+            margin: 5px 0;
+            color: lightblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nexus</h1>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+    
+    <div class="video-container">
+        <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="User Avatar">
+            <span>@NexusUser</span>
+        </div>
+        <iframe src="https://www.youtube.com/embed/nwHYMpbovyY" allowfullscreen></iframe>
+        <div class="controls">
+            <button onclick="likeVideo()">Like ❤️ <span id="likeCount">0</span></button>
+            <button onclick="showCommentBox()">Comment 💬</button>
+        </div>
+    </div>
+    
+    <div class="comments" id="commentSection">
+        <h3>Comments</h3>
+        <div id="commentList"></div>
+    </div>
+    
+    <div class="suggestions">
+        <h3>More Videos</h3>
+        <a href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="_blank">▶ Video 1</a>
+        <a href="https://www.youtube.com/embed/3JZ_D3ELwOQ" target="_blank">▶ Video 2</a>
+        <a href="https://www.youtube.com/embed/tgbNymZ7vqY" target="_blank">▶ Video 3</a>
+    </div>
+
+    <script>
+        let likeCount = 0;
+
+        function likeVideo() {
+            likeCount++;
+            document.getElementById("likeCount").innerText = likeCount;
+        }
+
+        function showCommentBox() {
+            let comment = prompt("Enter your comment:");
+            if(comment) {
+                let commentList = document.getElementById("commentList");
+                let newComment = document.createElement("div");
+                newComment.innerText = "@NexusUser: " + comment;
+                commentList.appendChild(newComment);
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+</body>
+</html>
